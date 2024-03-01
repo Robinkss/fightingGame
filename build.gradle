@@ -1,0 +1,70 @@
+plugins {
+    id 'java'
+    id 'io.quarkus'
+    id "org.sonarqube" version "4.4.1.3373"
+    id 'jacoco'
+}
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+    implementation enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
+    implementation 'io.quarkus:quarkus-arc'
+    implementation 'io.quarkus:quarkus-resteasy-reactive'
+    testImplementation 'io.quarkus:quarkus-junit5'
+    testImplementation 'io.rest-assured:rest-assured'
+    testImplementation "io.quarkus:quarkus-jacoco"
+    compileOnly 'org.projectlombok:lombok:1.18.22' // Remplacez par la dernière version disponible
+    annotationProcessor 'org.projectlombok:lombok:1.18.22' // Remplacez par la dernière version disponible
+}
+
+group 'org.acme'
+version '1.0.0-SNAPSHOT'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+test {
+    systemProperty "java.util.logging.manager", "org.jboss.logmanager.LogManager"
+    finalizedBy jacocoTestReport
+    jacoco {
+        excludeClassLoaders = ["*QuarkusClassLoader"]
+        destinationFile = layout.buildDirectory.file("jacoco-quarkus.exec").get().asFile
+    }
+    jacocoTestReport.enabled = true
+}
+
+sonar {
+    properties {
+        property "sonar.projectKey", "projet-18"
+        property "sonar.token", "sqp_f9b5e7906df30007f6701165f15168ce7fbfc840"
+        property "sonar.projectName", "projet-18"
+        property "sonar.qualitygate.wait", true
+        property "sonar.host.url", "https://sonar.home.lange.xyz"
+        tasks.jacocoTestReport.configure {
+            property("sonar.coverage.jacoco.xmlReportPaths", ["build/reports/jacoco/test/jacocoTestReport.xml"])
+        }
+    }
+}
+
+compileJava {
+    options.encoding = 'UTF-8'
+    options.compilerArgs << '-parameters'
+}
+
+compileTestJava {
+    options.encoding = 'UTF-8'
+}
+
+jacocoTestReport {
+    reports {
+        xml.required = true
+        csv.required = true
+        html.required = true
+    }
+}
