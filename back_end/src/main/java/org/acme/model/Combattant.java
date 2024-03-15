@@ -1,5 +1,10 @@
 package org.acme.model;
 
+import lombok.Data;
+
+import static java.lang.Thread.sleep;
+
+@Data
 public class Combattant {
 
     private String name;
@@ -11,18 +16,24 @@ public class Combattant {
 
     private int movementSpeed;
 
-    public Combattant(String name, int hp, int attackDamage, int attackSpeed ,int movementSpeed) {
-        this.name = name;
-        this.hp = hp;
-        this.attackDamage = attackDamage;
-        this.attackSpeed = attackSpeed;
-        this.movementSpeed = movementSpeed;
+    private int posX;
+    private int posY;
+
+    public void attack(Combattant target) {
+        target.hp -= this.attackDamage;
     }
 
+    public void moveForward() {
+        this.posX += this.movementSpeed;
+    }
 
+    public void moveBackward() {
+        this.posX -= this.movementSpeed;
+    }
 
+    /*public void jump() throws InterruptedException {
+        this.posY += 1;
+        sleep(1000);
+    }*/
 
-
-
-    
 }

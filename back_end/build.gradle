@@ -19,7 +19,14 @@ dependencies {
     testImplementation "io.quarkus:quarkus-jacoco"
     compileOnly 'org.projectlombok:lombok:1.18.22' // Remplacez par la dernière version disponible
     annotationProcessor 'org.projectlombok:lombok:1.18.22' // Remplacez par la dernière version disponible
+
+    implementation "io.quarkus:quarkus-container-image-jib"
+
+
+    implementation 'org.projectlombok:lombok:1.18.22'
+
 }
+
 
 group 'org.acme'
 version '1.0.0-SNAPSHOT'
