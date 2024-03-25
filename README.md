@@ -35,3 +35,8 @@ The compiler can be run with the following command in the appropriate directory:
 ```
 
 The result is a jar file with the sum of each line of integers in the file with the extension **".sum"**.
+
+# AUTHORS
+
+- Léon Boudier
+- Robin Aveline 
