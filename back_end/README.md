@@ -54,29 +54,3 @@ If you want to learn more about building native executables, please consult http
 Easily start your Reactive RESTful Web Services
 
 [Related guide section...](https://quarkus.io/guides/getting-started-reactive#reactive-jax-rs-resources)
-
-# Grammar 1
-
-grammar comLang;
-
-program : statement+;
-statement : ('J1' | 'J2') action;
-
-action : 'attack' | 'defend' | move
-move : 'jump' | 'left' | 'right'
-
-WS : [ \t\r\n]+ -> skip;
-
-# Grammar 2
-
-grammar hplang;
-
-program : statement+;
-statement : attack | defend | hp;
-
-attack : 'attack' INT;
-defend : 'defend' INT;
-hp : 'hp' INT;
-
-INT : [0-9]+ ;
-WS : [ \t\r\n]+ -> skip;

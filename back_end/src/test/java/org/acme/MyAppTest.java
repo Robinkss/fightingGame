@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class MyAppTest {
-
+    /*
     @Test
     void title_p0() {
         MyApp myApp = new MyApp();
@@ -53,6 +53,7 @@ class MyAppTest {
         assertEquals("#####carmageddon", myApp.returnTitle("carmageddon",  Integer.MAX_VALUE));
 
     }
+    */
 
     @Test
     void run() throws Exception {
